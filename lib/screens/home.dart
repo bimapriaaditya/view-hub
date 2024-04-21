@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:view_hub/models/custom_colors.dart';
 import "package:flutter_feather_icons/flutter_feather_icons.dart";
+import 'package:view_hub/screens/detail.dart';
 import 'package:view_hub/widgets/video_card.dart';
 
 var topMenus = [
@@ -81,7 +82,12 @@ class _HomePageState extends State<HomePage> {
         final video = videoList[index];
         return InkWell(
           onTap: () {
-            print("Halo aku bima");
+            Navigator.push(
+              context, 
+              MaterialPageRoute(
+                builder: (context) => const DetailVideo()
+              )
+            );
           },
           child: VideoCard(
             thumbnailUrl: video["thumbnailUrl"],
