@@ -68,13 +68,50 @@ class _DetailVideoState extends State<DetailVideo> {
               const TextSpan(text: " Read more..."),
             ])),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 9),
             child: Column(
               children: [
                  _ChannelSection(),
                  SizedBox(height: 12),
                  _VideoActionSection(),
+                 Container(
+                  height: 200, // Sesuaikan dengan kebutuhan
+                  child: DefaultTabController(
+                    length: 3, // Jumlah tab yang ingin ditampilkan
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 16),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.symmetric(
+                              horizontal: BorderSide(
+                                color: Colors.white.withOpacity(.1)
+                              )
+                            )
+                          ),
+                          child: const TabBar(
+                            dividerColor: Colors.transparent,
+                            labelColor: CustomColor.brand,
+                            indicatorColor: CustomColor.brand,
+                            tabs: [
+                              Tab(text: 'Related Videos'),
+                              Tab(text: 'Comments'),
+                            ],
+                          ),
+                        ),
+                        const Expanded(
+                          child: TabBarView(
+                            children: [
+                              Text('Konten Tab 1'),
+                              Text('Konten Tab 2'),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
