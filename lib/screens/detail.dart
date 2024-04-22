@@ -68,159 +68,181 @@ class _DetailVideoState extends State<DetailVideo> {
               const TextSpan(text: " Read more..."),
             ])),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 9),
             child: Column(
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.asset(
-                            "assets/images/user_image.png",
-                            fit: BoxFit.contain,
-                            width: 25,
-                            height: 25,
-                          ),
-                        ),
-                        const SizedBox(width: 8,),
-                        const Text("Humas amik bdg", style: TextStyle(fontSize: 14),)
-                      ],
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: CustomColor.brand,
-                        borderRadius: BorderRadius.circular(12)
-                      ),
-                      child: const Text(
-                        "Subscribe",
-                        style: TextStyle(
-                          color: Colors.black
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(height: 12),
-                SizedBox(
-                  height: 40,
-                  child: ListView(
-                    addAutomaticKeepAlives: true,
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      // Liked
-                      FilledButton(
-                        onPressed: () {}, 
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white.withOpacity(.15)
-                        ),
-                        child: const Row(children: [
-                          Icon(
-                            FeatherIcons.thumbsUp,
-                            size: 16,
-                          ),
-                          SizedBox(width: 12),
-                          Text("100", style: TextStyle(fontSize: 14),)
-                        ])
-                      ),
-                      const SizedBox(width: 10),
-                      
-                      // Disliked
-                      FilledButton(
-                        onPressed: () {}, 
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white.withOpacity(.15)
-                        ),
-                        child: const Row(children: [
-                          Icon(
-                            FeatherIcons.thumbsDown,
-                            size: 16,
-                          ),
-                          SizedBox(width: 12),
-                          Text("6", style: TextStyle(fontSize: 14),)
-                        ])
-                      ),
-                      const SizedBox(width: 10),
-                      
-                      // Shared
-                      FilledButton(
-                        onPressed: () {}, 
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white.withOpacity(.15)
-                        ),
-                        child: const Row(children: [
-                          Icon(
-                            FeatherIcons.share2,
-                            size: 16,
-                          ),
-                          SizedBox(width: 12),
-                          Text("Shared", style: TextStyle(fontSize: 14),)
-                        ])
-                      ),
-                      const SizedBox(width: 10),
-                      
-                      // Save to Bookmark
-                      FilledButton(
-                        onPressed: () {}, 
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white.withOpacity(.15)
-                        ),
-                        child: const Row(children: [
-                          Icon(
-                            FeatherIcons.bookmark,
-                            size: 16,
-                          ),
-                          SizedBox(width: 12),
-                          Text("Bookmark", style: TextStyle(fontSize: 14),)
-                        ])
-                      ),
-                      const SizedBox(width: 10),
-                      
-                      // Download
-                      FilledButton(
-                        onPressed: () {}, 
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white.withOpacity(.15)
-                        ),
-                        child: const Row(children: [
-                          Icon(
-                            FeatherIcons.download,
-                            size: 16,
-                          ),
-                          SizedBox(width: 12),
-                          Text("Download", style: TextStyle(fontSize: 14),)
-                        ])
-                      ),
-                      const SizedBox(width: 10),
-                      
-                      // Report
-                      FilledButton(
-                        onPressed: () {}, 
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white.withOpacity(.15)
-                        ),
-                        child: const Row(children: [
-                          Icon(
-                            FeatherIcons.flag,
-                            size: 16,
-                          ),
-                          SizedBox(width: 12),
-                          Text("Report", style: TextStyle(fontSize: 14),)
-                        ])
-                      ),
-                      const SizedBox(width: 10),
-
-                    ],
-                  ),
-                )
+                 _ChannelSection(),
+                 SizedBox(height: 12),
+                 _VideoActionSection(),
               ],
             ),
-          )
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ChannelSection extends StatelessWidget {
+  const _ChannelSection({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Image.asset(
+                "assets/images/user_image.png",
+                fit: BoxFit.contain,
+                width: 25,
+                height: 25,
+              ),
+            ),
+            const SizedBox(width: 8,),
+            const Text("Humas amik bdg", style: TextStyle(fontSize: 14),)
+          ],
+        ),
+        Container(
+          padding: EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: CustomColor.brand,
+            borderRadius: BorderRadius.circular(12)
+          ),
+          child: const Text(
+            "Subscribe",
+            style: TextStyle(
+              color: Colors.black
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class _VideoActionSection extends StatelessWidget {
+  const _VideoActionSection({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 40,
+      child: ListView(
+        addAutomaticKeepAlives: true,
+        scrollDirection: Axis.horizontal,
+        children: [
+          // Liked
+          FilledButton(
+            onPressed: () {}, 
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white.withOpacity(.15)
+            ),
+            child: const Row(children: [
+              Icon(
+                FeatherIcons.thumbsUp,
+                size: 16,
+              ),
+              SizedBox(width: 12),
+              Text("100", style: TextStyle(fontSize: 14),)
+            ])
+          ),
+          const SizedBox(width: 10),
+          
+          // Disliked
+          FilledButton(
+            onPressed: () {}, 
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white.withOpacity(.15)
+            ),
+            child: const Row(children: [
+              Icon(
+                FeatherIcons.thumbsDown,
+                size: 16,
+              ),
+              SizedBox(width: 12),
+              Text("6", style: TextStyle(fontSize: 14),)
+            ])
+          ),
+          const SizedBox(width: 10),
+          
+          // Shared
+          FilledButton(
+            onPressed: () {}, 
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white.withOpacity(.15)
+            ),
+            child: const Row(children: [
+              Icon(
+                FeatherIcons.share2,
+                size: 16,
+              ),
+              SizedBox(width: 12),
+              Text("Shared", style: TextStyle(fontSize: 14),)
+            ])
+          ),
+          const SizedBox(width: 10),
+          
+          // Save to Bookmark
+          FilledButton(
+            onPressed: () {}, 
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white.withOpacity(.15)
+            ),
+            child: const Row(children: [
+              Icon(
+                FeatherIcons.bookmark,
+                size: 16,
+              ),
+              SizedBox(width: 12),
+              Text("Bookmark", style: TextStyle(fontSize: 14),)
+            ])
+          ),
+          const SizedBox(width: 10),
+          
+          // Download
+          FilledButton(
+            onPressed: () {}, 
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white.withOpacity(.15)
+            ),
+            child: const Row(children: [
+              Icon(
+                FeatherIcons.download,
+                size: 16,
+              ),
+              SizedBox(width: 12),
+              Text("Download", style: TextStyle(fontSize: 14),)
+            ])
+          ),
+          const SizedBox(width: 10),
+          
+          // Report
+          FilledButton(
+            onPressed: () {}, 
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white.withOpacity(.15)
+            ),
+            child: const Row(children: [
+              Icon(
+                FeatherIcons.flag,
+                size: 16,
+              ),
+              SizedBox(width: 12),
+              Text("Report", style: TextStyle(fontSize: 14),)
+            ])
+          ),
+          const SizedBox(width: 10),
+    
         ],
       ),
     );
