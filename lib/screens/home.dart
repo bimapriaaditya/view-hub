@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:view_hub/models/custom_colors.dart';
 import "package:flutter_feather_icons/flutter_feather_icons.dart";
+import 'package:view_hub/models/video_list.dart';
 import 'package:view_hub/screens/detail.dart';
 import 'package:view_hub/widgets/video_card.dart';
+
 
 var topMenus = [
   "Live Stream",
@@ -11,36 +13,6 @@ var topMenus = [
   "Ter Viraaaal",
   "Sport",
   "Lainnya"
-];
-
-final List<Map<String, dynamic>> videoList = [
-  {
-    'thumbnailUrl': 'assets/images/landscape_image.png',
-    'title': 'Acara Makrab Mahasiswa STMIK AMIK Angkatan 2022 terjalin meriah dan sangat akrab',
-    'duration': '10:11',
-    'viewed': 350,
-    'liked': 54,
-    'channelThumbnail': 'assets/images/user_image.png',
-    'channelName': 'Humas',
-  },
-  {
-    'thumbnailUrl': 'assets/images/potrait_image.png',
-    'title': 'Acara Makrab Mahasiswa STMIK AMIK Angkatan 2022 terjalin meriah dan sangat akrab',
-    'duration': '22:25',
-    'viewed': 350,
-    'liked': 54,
-    'channelThumbnail': 'assets/images/user_image.png',
-    'channelName': 'Humas Amik Bdg',
-  },
-  {
-    'thumbnailUrl': 'assets/images/landscape_image.png',
-    'title': 'Acara Makrab Mahasiswa STMIK AMIK Angkatan 2022 terjalin meriah dan sangat akrab',
-    'duration': '33:02',
-    'viewed': 350,
-    'liked': 54,
-    'channelThumbnail': 'assets/images/user_image.png',
-    'channelName': 'Humas Amik Bdg',
-  }
 ];
 
 class HomePage extends StatefulWidget {
@@ -75,11 +47,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   ListView _videoList() {
+    final data = VideoList.videoList();
+
     return ListView.separated(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        final video = videoList[index];
         return InkWell(
           onTap: () {
             Navigator.push(
@@ -89,20 +62,11 @@ class _HomePageState extends State<HomePage> {
               )
             );
           },
-          child: VideoCard(
-            thumbnailUrl: video["thumbnailUrl"],
-            title: video["title"],
-            duration: video["duration"],
-            viewed: video["viewed"],
-            liked: video["liked"],
-            channelThumbnail: video["channelThumbnail"],
-            channelName: video["channelName"]
-          ),
+          child: VideoCard(props: data[index],),
         );
       },
-      // itemBuilder: (context, index) => Text(videoList[index]["duration"]),
       separatorBuilder: (context, index) => const SizedBox(height: 16),
-      itemCount: videoList.length
+      itemCount: data.length
     );
   }
 }

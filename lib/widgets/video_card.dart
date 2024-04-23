@@ -1,24 +1,14 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter/widgets.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:view_hub/models/video_list.dart';
 
 class VideoCard extends StatelessWidget {
-  final String thumbnailUrl;
-  final String title;
-  final String duration;
-  final int viewed;
-  final int liked;
-  final String channelThumbnail;
-  final String channelName;
+  final VideoList props;
 
-  const VideoCard({super.key, 
-    required this.thumbnailUrl,
-    required this.title,
-    required this.duration,
-    required this.viewed,
-    required this.liked,
-    required this.channelThumbnail,
-    required this.channelName,
+  const VideoCard({
+    super.key,
+    required this.props
   });
 
   @override
@@ -31,7 +21,7 @@ class VideoCard extends StatelessWidget {
           Stack(
             children: [
               Image.asset(
-                thumbnailUrl,
+                props.thumbnailUrl,
                 width: double.infinity,
                 height: 225,
                 fit: BoxFit.cover,
@@ -46,7 +36,7 @@ class VideoCard extends StatelessWidget {
                     border: Border.all(color: Colors.black, width: 1),
                     borderRadius: const BorderRadius.all(Radius.circular(8))
                   ),
-                  child: Text(duration, 
+                  child: Text(props.duration, 
                     style: const TextStyle(
                       color: Colors.white
                     ),
@@ -66,14 +56,14 @@ class VideoCard extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: Image.asset(
-                        channelThumbnail,
+                        props.channelThumbnail,
                         fit: BoxFit.contain,
                         width: 25,
                         height: 25,
                       ),
                     ),
                     const SizedBox(width: 8,),
-                    Text(channelName, style: const TextStyle(fontSize: 16),)
+                    Text(props.channelName, style: const TextStyle(fontSize: 16),)
                   ],
                 ),
                 Row(children: [
@@ -84,7 +74,7 @@ class VideoCard extends StatelessWidget {
                       size: 16,
                     ),
                     const SizedBox(width: 8),
-                    Text("$viewed")
+                    Text(props.viewed.toString())
                   ]),
                   const SizedBox(width: 12,),
                   Row(children: [
@@ -94,7 +84,7 @@ class VideoCard extends StatelessWidget {
                       size: 16,
                     ),
                     const SizedBox(width: 8),
-                    Text("$liked")
+                    Text(props.liked.toString())
                   ])
                 ],),
               ],
@@ -104,7 +94,7 @@ class VideoCard extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
             child: Expanded(
               child: Text(
-                title,
+                props.title,
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600
