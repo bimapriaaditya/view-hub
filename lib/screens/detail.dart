@@ -4,6 +4,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:video_player/video_player.dart';
 import 'package:view_hub/models/custom_colors.dart';
+import 'package:view_hub/models/video_list.dart';
+import 'package:view_hub/widgets/comment.dart';
+import 'package:view_hub/widgets/video_card.dart';
 
 class DetailVideo extends StatefulWidget {
   const DetailVideo({super.key});
@@ -107,8 +110,12 @@ class _DetailVideoState extends State<DetailVideo> {
                   Expanded(
                     child: TabBarView(
                       children: [
-                        Container(color: Colors.amber,),
-                        Container(color: Colors.red,),
+                        _videoList(),
+                        ListView(children: const [
+                        CommentView(),
+                        CommentView(),
+                        CommentView(),
+                        ])
                       ],
                     ),
                   ),
@@ -118,6 +125,29 @@ class _DetailVideoState extends State<DetailVideo> {
           ),
         ],
       ),
+    );
+  }
+
+  ListView _videoList() {
+    final data = VideoList.videoList();
+
+    return ListView.separated(
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return InkWell(
+          onTap: () {
+            Navigator.push(
+              context, 
+              MaterialPageRoute(
+                builder: (context) => const DetailVideo()
+              )
+            );
+          },
+          child: VideoCard(props: data[index],),
+        );
+      },
+      separatorBuilder: (context, index) => const SizedBox(height: 16),
+      itemCount: data.length
     );
   }
 }
