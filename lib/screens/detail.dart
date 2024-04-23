@@ -1,5 +1,6 @@
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:video_player/video_player.dart';
 import 'package:view_hub/models/custom_colors.dart';
@@ -68,51 +69,51 @@ class _DetailVideoState extends State<DetailVideo> {
               const TextSpan(text: " Read more..."),
             ])),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 9),
             child: Column(
               children: [
                  _ChannelSection(),
                  SizedBox(height: 12),
                  _VideoActionSection(),
-                 Container(
-                  height: 200, // Sesuaikan dengan kebutuhan
-                  child: DefaultTabController(
-                    length: 3, // Jumlah tab yang ingin ditampilkan
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 16),
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.symmetric(
-                              horizontal: BorderSide(
-                                color: Colors.white.withOpacity(.1)
-                              )
-                            )
-                          ),
-                          child: const TabBar(
-                            dividerColor: Colors.transparent,
-                            labelColor: CustomColor.brand,
-                            indicatorColor: CustomColor.brand,
-                            tabs: [
-                              Tab(text: 'Related Videos'),
-                              Tab(text: 'Comments'),
-                            ],
-                          ),
-                        ),
-                        const Expanded(
-                          child: TabBarView(
-                            children: [
-                              Text('Konten Tab 1'),
-                              Text('Konten Tab 2'),
-                            ],
-                          ),
-                        ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: DefaultTabController(
+              length: 3,
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.symmetric(
+                        horizontal: BorderSide(
+                          color: Colors.white.withOpacity(.1)
+                        )
+                      )
+                    ),
+                    child: const TabBar(
+                      dividerColor: Colors.transparent,
+                      labelColor: CustomColor.brand,
+                      indicatorColor: CustomColor.brand,
+                      tabs: [
+                        Tab(text: 'Related Videos'),
+                        Tab(text: 'Comments'),
                       ],
                     ),
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: TabBarView(
+                      children: [
+                        Container(color: Colors.amber,),
+                        Container(color: Colors.red,),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
