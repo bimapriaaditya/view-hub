@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:view_hub/models/comment_message.dart';
 import 'package:view_hub/models/custom_colors.dart';
 
 class CommentView extends StatelessWidget {
-  const CommentView({super.key});
+  final CommentMessage props;
+
+  const CommentView({
+    super.key,
+    required this.props
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +23,7 @@ class CommentView extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Image.asset(
-              "assets/images/user_image.png",
+              props.userImage,
               width: 25,
               height: 25,
               fit: BoxFit.cover,
@@ -38,19 +44,19 @@ class CommentView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Row(
+                  Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Sukirman Yudoyono", 
-                        style: TextStyle(
+                        props.sendBy, 
+                        style: const TextStyle(
                           fontSize: 14
                         )
                       ),
-                      SizedBox(width: 12),
+                      const SizedBox(width: 12),
                       Text(
-                        "17/04/2023 09:21",
-                        style: TextStyle(
+                        props.sendAt,
+                        style: const TextStyle(
                           fontWeight: FontWeight.w300,
                           fontSize: 12
                         ),
@@ -58,7 +64,7 @@ class CommentView extends StatelessWidget {
                     ]
                   ),
                   const SizedBox(height: 6),
-                  const Text("Mantaap maju terus amik semoga semakin didepan dan menjadi yang luarbiasa #yangpastipastiaja"),
+                  Text(props.message),
                   Row(
                     children: [
                       Container(
@@ -82,7 +88,7 @@ class CommentView extends StatelessWidget {
                             color: Color.fromRGBO(255, 255, 255, .25),
                           ),
                           const SizedBox(width: 6,),
-                          Text("See Reply (6)", style: TextStyle(color: Colors.white.withOpacity(.25)),)
+                          Text("See Reply (${props.replyCount})", style: TextStyle(color: Colors.white.withOpacity(.25)),)
                         ],),
                       ),
                     ],
@@ -91,7 +97,7 @@ class CommentView extends StatelessWidget {
               ),
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(vertical: 8),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -100,9 +106,11 @@ class CommentView extends StatelessWidget {
                 Icon(
                   FeatherIcons.heart, 
                   size: 14,
-                  color: Colors.white,
+                  color: props.isLiked == true ? CustomColor.brand : Colors.white,
                 ),
-                Text("136"),
+                Text("${props.likedCount}", style: TextStyle(
+                  color: props.isLiked == true ? CustomColor.brand : Colors.white
+                ),),
               ]
             ),
           )

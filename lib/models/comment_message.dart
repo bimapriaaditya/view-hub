@@ -16,7 +16,7 @@ class CommentMessage {
     required this.message,
     required this.replyCount,
     required this.likedCount,
-    this.isLiked,
+    required this.isLiked,
   });
 
   static List<CommentMessage> commentList() {
@@ -28,7 +28,8 @@ class CommentMessage {
         sendAt: "17/04/2023 09:21", 
         message: "Mantaap maju terus amik semoga semakin didepan dan menjadi yang luarbiasa #yangpastipastiaja", 
         replyCount: 5, 
-        likedCount: 182
+        likedCount: 182,
+        isLiked: false
       ),
       CommentMessage(
         id: "2", 
@@ -47,7 +48,8 @@ class CommentMessage {
         sendAt: "17/04/2023 09:21", 
         message: "Mantaap maju terus amik semoga semakin didepan dan menjadi yang luarbiasa #yangpastipastiaja", 
         replyCount: 5, 
-        likedCount: 182
+        likedCount: 182,
+        isLiked: false
       ),
       CommentMessage(
         id: "4", 
@@ -56,7 +58,8 @@ class CommentMessage {
         sendAt: "17/04/2023 09:21", 
         message: "Mantaap maju terus amik semoga semakin didepan dan menjadi yang luarbiasa #yangpastipastiaja", 
         replyCount: 5, 
-        likedCount: 182
+        likedCount: 182,
+        isLiked: false
       ),
       CommentMessage(
         id: "5", 
@@ -65,7 +68,8 @@ class CommentMessage {
         sendAt: "17/04/2023 09:21", 
         message: "Mantaap maju terus amik semoga semakin didepan dan menjadi yang luarbiasa #yangpastipastiaja", 
         replyCount: 5, 
-        likedCount: 182
+        likedCount: 182,
+        isLiked: false
       ),
     ];
   }

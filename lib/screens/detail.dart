@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:video_player/video_player.dart';
+import 'package:view_hub/models/comment_message.dart';
 import 'package:view_hub/models/custom_colors.dart';
 import 'package:view_hub/models/video_list.dart';
 import 'package:view_hub/widgets/comment.dart';
@@ -111,11 +112,7 @@ class _DetailVideoState extends State<DetailVideo> {
                     child: TabBarView(
                       children: [
                         _videoList(),
-                        ListView(children: const [
-                        CommentView(),
-                        CommentView(),
-                        CommentView(),
-                        ])
+                        commentList()
                       ],
                     ),
                   ),
@@ -125,6 +122,20 @@ class _DetailVideoState extends State<DetailVideo> {
           ),
         ],
       ),
+    );
+  }
+
+  ListView commentList() {
+
+    final data = CommentMessage.commentList();
+
+    return ListView.separated(
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return CommentView(props: data[index]);
+      },
+      separatorBuilder: (context, index) => const SizedBox(height: 12),
+      itemCount: data.length,
     );
   }
 
