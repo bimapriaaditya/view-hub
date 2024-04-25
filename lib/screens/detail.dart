@@ -1,5 +1,7 @@
 import 'package:flick_video_player/flick_video_player.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:video_player/video_player.dart';
@@ -112,7 +114,76 @@ class _DetailVideoState extends State<DetailVideo> {
                     child: TabBarView(
                       children: [
                         _videoList(),
-                        commentList()
+                        Stack(
+                          children: [
+                            Expanded(child: Padding(
+                              padding: const EdgeInsets.only(bottom: 100),
+                              child: _commentList(),
+                            )),
+                            Positioned(
+                              bottom: 0,
+                              left: 0,
+                              width: MediaQuery.of(context).size.width,
+                              child: Container(
+                                padding: const EdgeInsets.all(8),
+                                color: Colors.black,
+                                child: Row(
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(25),
+                                      child: Image.asset(
+                                        "assets/images/user_image.png",
+                                        width: 35,
+                                        height: 35,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(12),
+                                        child: TextFormField(
+                                          decoration: const InputDecoration(
+                                            hintText: "Write a message...",
+                                            hintStyle: TextStyle(color: Color.fromRGBO(255, 255, 255, .25)),
+                                            suffixIcon: Icon(
+                                              FeatherIcons.smile, 
+                                              color: Color.fromRGBO(255, 255, 255, .25), 
+                                              size: 18,
+                                            ),
+                                            filled: true,
+                                            fillColor: Color.fromRGBO(255, 255, 255, .075),
+                                            focusColor: CustomColor.brand,
+                                            focusedBorder: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(Radius.circular(24)),
+                                              borderSide: BorderSide(
+                                                color: CustomColor.brand,
+                                              )
+                                            ),
+                                            contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                                            border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(Radius.circular(24))
+                                            )
+                                          ),
+                                        ),
+                                      )
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: () {}, 
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: CustomColor.brand
+                                      ),
+                                      child: const Icon(
+                                        FeatherIcons.send,
+                                        color: Colors.white,
+                                      )
+                                    )
+                                  ]
+                                ),
+                              )
+                            )
+                            
+                          ],
+                        )
                       ],
                     ),
                   ),
@@ -125,7 +196,7 @@ class _DetailVideoState extends State<DetailVideo> {
     );
   }
 
-  ListView commentList() {
+  ListView _commentList() {
 
     final data = CommentMessage.commentList();
 
